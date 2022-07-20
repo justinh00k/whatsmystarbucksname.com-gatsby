@@ -44,15 +44,14 @@ return words.map((word) => {
 }).join(" ");
 }
 
-export const twitterShare = (cupName: string)=>window.open(`https://twitter.com/intent/tweet?text=${cupName ? `My Starbucks name is "${cupName}." What's yours?` : "What's your Starbucks name?"}&url=https://whatsmystarbucksname.com/${cupName && `cups/${encodeURI(cupName)}`}&related=${encodeURI("justinhook,Developer")}`, "Share Your Cup on Twitter", 'width=600,height=400,scrollbars=no'); 
+export const twitterShare = (cupName: string)=>window.open(`https://twitter.com/intent/tweet?text=${cupName ? `My Starbucks name is "${cupName}." What's yours?` : "What's your Starbucks name?"}&url=https://whatsmystarbucksname.com/${cupName && `cups/${encodeURI(cupName.toLowerCase())}`}&related=${encodeURI("justinhook,Developer")}`, "Share Your Cup on Twitter", 'width=600,height=400,scrollbars=no'); 
 
 export const fbShare = (cupNumber : number, cupName : string)=>{
 const encodedCupName = encodeURI(cupName.toLowerCase());
 if ("FB" in window === false){
-return console.log(encodedCupName, cupName);
+return console.error("fb sdk failed to load");
 }
-	// eslint-disable-next-line no-unreachable
-	return window.FB.ui({
+	 window.FB.ui({
         method: 'feed',
         link: `https://whatsmystarbucksname.com/cup/${encodedCupName}`,
         name: cupName ? `My Starbucks name is "${cupName}." What's yours?` : "How will the barista misspell your name?" ,

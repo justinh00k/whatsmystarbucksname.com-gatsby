@@ -12,7 +12,7 @@ import {
 	nonAtoZchoices,
 	bgNames,
 	bgURLs,
-	supportedLangs
+	supportedLangs,
 } from '../components/constants';
 import {
 	syllableCount,
@@ -20,16 +20,17 @@ import {
 	cupFileName,
 	capitalizeEveryWord,
 	fbShare,
-	twitterShare
+	twitterShare,
 } from '../components/helpers';
 
 const IndexPage = (props: any) => {
 	const lang: string =
-		typeof navigator !== 'undefined' && supportedLangs.indexOf(window.navigator.language.substring(0, 2)) > -1
+		typeof navigator !== 'undefined' &&
+		supportedLangs.indexOf(window.navigator.language.substring(0, 2)) > -1
 			? window.navigator.language.substring(0, 2)
 			: 'en';
 	const { backgrounds, cups, logos, site } = props.data;
-	const { description, title } = site.siteMetadata;
+	const { description, title, siteUrl } = site.siteMetadata;
 	const { initialCupNumber } = props.pageContext;
 
 	const [bgImageNum, setBgImageNum] = React.useState(
@@ -37,7 +38,7 @@ const IndexPage = (props: any) => {
 	);
 	const [nameToTest, setNameToTest] = React.useState('');
 	const [cupNumber, setCupNumber] = React.useState(
-		initialCupNumber ? initialCupNumber : -1
+		initialCupNumber ? initialCupNumber + 1 : -1
 	);
 	const [cupName, setCupName] = React.useState<string>(
 		initialCupNumber ? capitalizeEveryWord(names[initialCupNumber]) : ''
@@ -188,7 +189,6 @@ const IndexPage = (props: any) => {
 			choice4[rn] = -1;
 		}
 
-		
 		setCupNumber(choices[turn] + 1);
 		setStoredChoices(choices);
 	}
@@ -198,21 +198,20 @@ const IndexPage = (props: any) => {
 		setNameToTest('');
 		setTurn(0);
 		setCupNumber(-1);
-		navigate("/");
+		navigate('/');
 	}
 
 	React.useEffect(() => {
 		if (turn >= storedChoices.length) {
 			setTurn(0);
 		} else if (cupNumber > -1) {
-			const newCupName = names[storedChoices[turn]].substring(0, 1) === '?'
-			? 'you'
-			: capitalizeEveryWord(names[storedChoices[turn]]);
-			setCupName(
-				newCupName
-			);
+			const newCupName =
+				names[storedChoices[turn]].substring(0, 1) === '?'
+					? 'you'
+					: capitalizeEveryWord(names[storedChoices[turn]]);
+			setCupName(newCupName);
 			setCupNumber(storedChoices[turn] + 1);
-			const url = `/cups/${encodeURI(names[storedChoices[turn]])}`
+			const url = `/cups/${encodeURI(names[storedChoices[turn]])}`;
 			window.history.pushState(null, `${title} - ${newCupName}`, url);
 		}
 		// only turn and cupNumber probably trigger this
@@ -247,6 +246,39 @@ const IndexPage = (props: any) => {
 
 				<meta name="twitter:card" content="photo" />
 				<meta name="twitter:site" content="@justinhook" />
+
+				<meta
+					property="og:title"
+					content={
+						initialCupNumber
+							? `My Starbucks name is "${cupName}" What's yours?`
+							: title
+					}
+				/>
+				<meta
+					property="og:image"
+					content={
+						initialCupNumber
+							? `${siteUrl}/c/${cupFileName(cupNumber)}`
+							: `${siteUrl}/logo-w.png`
+					}
+				/>
+				<meta
+					property="twitter:title"
+					content={
+						initialCupNumber
+							? `My Starbucks name is "${cupName}" What's yours?`
+							: title
+					}
+				/>
+				<meta
+					property="twitter:image"
+					content={
+						initialCupNumber
+							? `${siteUrl}/c/${cupFileName(cupNumber)}`
+							: `${siteUrl}/logo-w.png`
+					}
+				/>
 			</Helmet>
 			<div style={{ position: 'absolute', left: '-10000px' }}>
 				{description}
@@ -362,8 +394,11 @@ const IndexPage = (props: any) => {
 							<div id="postshare">
 								<button
 									type="submit"
-									onClick={()=>fbShare(cupNumber, cupName)}
-									onKeyDown={(event)=>event.key==="Enter" && fbShare(cupNumber, names[storedChoices[turn]])}
+									onClick={() => fbShare(cupNumber, cupName)}
+									onKeyDown={(event) =>
+										event.key === 'Enter' &&
+										fbShare(cupNumber, names[storedChoices[turn]])
+									}
 									style={{
 										background: 'none',
 										border: '0',
@@ -377,8 +412,10 @@ const IndexPage = (props: any) => {
 								</button>
 								<button
 									type="submit"
-									onClick={()=>twitterShare(cupName)}
-									onKeyDown={(event)=>event.key==="Enter" && twitterShare(cupName)}
+									onClick={() => twitterShare(cupName)}
+									onKeyDown={(event) =>
+										event.key === 'Enter' && twitterShare(cupName)
+									}
 									style={{
 										background: 'none',
 										border: '0',
@@ -469,6 +506,7 @@ export const pageQuery = graphql`
 			siteMetadata {
 				description
 				title
+				siteUrl
 			}
 		}
 		logos: allFile(filter: { dir: { regex: "/logos/" } }) {

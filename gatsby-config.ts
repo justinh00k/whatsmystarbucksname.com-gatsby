@@ -32,7 +32,7 @@ const config: GatsbyConfig = {
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
-				icon: 'src/images/overlay.png',
+				icon: 'src/images/favicon.png',
 			},
 		},
 		'gatsby-plugin-sharp',
