@@ -1,0 +1,318 @@
+body {
+	background-color: #222;
+	font-family: Helvetica, Arial, sans-serif;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	color: #222;
+}
+
+button {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#postshare {
+	float: left;
+	clear: left;
+	width: 350px;
+}
+∏ #yourorder {
+	display: inline-block;
+	width: 350px;
+	margin-bottom: 20px;
+}
+
+#resultswrapper {
+	background-color: rgba(255, 255, 255, 0.9);
+	border: 6px solid #006341;
+	margin: 150px auto 70px;
+	padding: 25px;
+	position: relative;
+	text-align: left;
+	width: 80%;
+	max-width: 800px;
+}
+
+#drinksserved {
+	color: #999;
+
+	font-size: 13px;
+
+	position: absolute;
+	top: 31px;
+	right: 30px;
+}
+
+#totaldrinks {
+	font-weight: bold;
+}
+
+#preorder,
+#yourorder {
+	font-family: 'Indie Flower', Helvetica, Arial, sans-serif;
+	font-size: 45px;
+	line-height: 55px;
+}
+
+#photosby img {
+	position: relative;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+}
+#fbbtn {
+	clear: left;
+}
+#photosby {
+	font-size: 13px;
+}
+
+#preresults,
+#results {
+	margin-left: auto;
+	margin-right: auto;
+}
+.coffeepic {
+	border: 3px solid #006341;
+	float: right;
+	margin-bottom: 10px;
+	margin-left: 20px;
+	max-width: 350px;
+	max-height: 500px;
+}
+.mainButtons {
+	background: none;
+	border: 0 !important;
+	text-align: left;
+	display: inline-flex;
+	align-items: center;
+	line-height: 25px;
+	cursor: pointer;
+	width: 300px;
+	margin: 20px  0  10px 0;
+}
+.clearing {
+	clear: both;
+}
+#resultsmore button {
+	font-size: 18px;
+}
+#resultsmore a {
+	display: block;
+	float: left;
+
+	height: 70px;
+	margin-bottom: 25px;
+	margin-right: 25px;
+	width: 205px;
+}
+#resultsmore img {
+	float: left;
+	margin-right: 10px;
+	width: 70px;
+}
+a:link {
+	color: #222;
+	text-decoration: underline;
+}
+a:visited {
+	color: #222;
+}
+a:hover {
+	color: #222;
+	text-decoration: none;
+}
+input {
+	background-color: rgba(0, 0, 0, 0);
+	border: 2px solid #006341;
+	clear: right;
+	float: left;
+	font-family: sans-serif;
+	font-size: 30px;
+	margin-left: 10px;
+	margin-top: 15px;
+	padding: 5px;
+	width: 300px;
+	outline: 0;
+}
+.enteredText {
+	object-position: top right;
+}
+.noEnteredText {
+	object-position: top left;
+}
+#go {
+	display: block;
+	float: left;
+	height: 64px;
+	margin-top: 5px;
+	width: 64px;
+}
+#go:focus {
+	outline-width: 0;
+}
+p {
+	margin: 0;
+}
+#siteby {
+	color: #999;
+	float: left;
+	font-size: 15px;
+	line-height: 18px;
+	white-space: nowrap;
+	margin-top: -1px;
+	text-align: left;
+}
+#siteby a:link,
+#siteby a:hover,
+#siteby a:visited {
+	color: #999;
+}
+#footer {
+	background-color: rgba(0, 0, 0, 0.7);
+	bottom: 0;
+	height: 35px;
+	padding: 10px;
+	position: fixed;
+	webkit-transform: translateZ(0);
+	width: 100%;
+}
+#sharebuttons {
+	position: absolute;
+	right: 30px;
+	top: 8px;
+}
+#wrapper {
+	text-align: center;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	z-index: 3;
+}
+#dimmer {
+	background: rgba(0, 0, 0, 0.5);
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+}
+
+#fbbtn,
+#twitterbtn,
+#googlebtn,
+#tumblrbtn,
+#pbtn {
+	float: left;
+	padding: 20px 20px 0 0;
+	width: 50px;
+	height: 50px;
+}
+
+.fb_iframe_widget iframe {
+	bottom: 0;
+	position: absolute;
+	right: 0;
+}
+
+.logo {
+	left: 20px;
+	position: absolute;
+	max-width: 980px;
+	width: 90%;
+	margin: 30px 0;
+}
+@media screen and (max-width: 1015px) {
+	#resultswrapper {
+		margin-top: 20px;
+	}
+	#drinksserved {
+		display: none;
+	}
+	.logo {
+		left: 0;
+		position: relative;
+	}
+
+	.coffeepic {
+		float: none;
+		height: auto;
+		margin-left: 25%;
+		margin-right: 25%;
+		margin-bottom: 25px;
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.coffeepic {
+		height: auto;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+	}
+	#preorder,
+	#yourorder {
+		font-size: 25px;
+		line-height: 30px;
+	}
+	#footer {
+		background-color: rgba(255, 255, 255, 0.9);
+		border: 3px solid #006341;
+		height: auto;
+		margin:  30px 0;
+		padding: 15px;
+		position: static;
+		display: inline-block;
+		width: 70%;
+
+		text-align: center;
+	}
+	#sharebuttons {
+		display: inline-block;
+		margin: 0;
+		width: auto;
+		position: static;
+	}
+
+	#siteby {
+		color: #222;
+		float: none;
+		clear: left;
+		position: relative;
+		top: 5px;
+		text-align: center;
+		white-space: normal;
+	}
+	#siteby a:link,
+	#siteby a:visited {
+		color: #222;
+	}
+	#nameInput {
+		font-size: 20px;
+		width: 150px;
+		margin-left: -2px;
+	}
+	#resultsmore button,
+	#resultsmore {
+		font-size: 15px;
+	}
+	#resultsmore img {
+		width: 50px;
+	}
+
+	#photosby {
+		display: block;
+		margin-top: 5px;
+	}
+	#fbbtn,
+	#twitterbtn {
+		padding-right: 15px;
+	}
+	#fbbtn,
+	#twitterbtn {
+		padding: 0 15px 15px 0;
+		width: 40px;
+		height: 40px;
+	}
+}
