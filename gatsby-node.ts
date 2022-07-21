@@ -21,7 +21,7 @@ exports.createPages = async function ({ graphql, actions }:any) {
 		actions.createPage({
 			path: `cups/${encodeURI(cupName)}`,
 			component: path.resolve('src/pages/index.tsx'),
-			context: { initialCupNumber: parseInt(cup.node.base) },
+			context: { initialCupNumber: parseInt(cup.node.base) + 1 },
 		});
 	});
 };

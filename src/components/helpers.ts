@@ -37,12 +37,7 @@ export const cupFileName = (jpgNum: number) => {
 	return `${jpgNum}.jpg`;
 };
 
-export const capitalizeEveryWord = (name: string) =>{
-	const words = name.split(" ");
-return words.map((word) => { 
-    return word[0].toUpperCase() + word.substring(1); 
-}).join(" ");
-}
+export const capitalizeEveryWord = (name: string) =>!name ? "" : name.split(" ").map((word) => word.length>0 ? word[0].toUpperCase() + word.substring(1) : "").join(" ");
 
 export const twitterShare = (cupName: string)=>window.open(`https://twitter.com/intent/tweet?text=${cupName ? `My Starbucks name is "${cupName}." What's yours?` : "What's your Starbucks name?"}&url=https://whatsmystarbucksname.com/${cupName && `cups/${encodeURI(cupName.toLowerCase())}`}&related=${encodeURI("justinhook,Developer")}`, "Share Your Cup on Twitter", 'width=600,height=400,scrollbars=no'); 
 

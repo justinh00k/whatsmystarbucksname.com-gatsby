@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { graphql, Link, navigate } from 'gatsby';
+import { navigate, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import '../styles/stylesheet.css';
+import BackgroundImage from '../components/background';
+import Logo from "../components/logo"
+import Cup from "../components/cup"
 import {
 	names,
 	popularNames,
@@ -29,8 +32,7 @@ const IndexPage = (props: any) => {
 		supportedLangs.indexOf(window.navigator.language.substring(0, 2)) > -1
 			? window.navigator.language.substring(0, 2)
 			: 'en';
-	const { backgrounds, cups, logos, site } = props.data;
-	const { description, title, siteUrl } = site.siteMetadata;
+	const { description, title, siteUrl } = props.data.site.siteMetadata;
 	const { initialCupNumber } = props.pageContext;
 
 	const [bgImageNum, setBgImageNum] = React.useState(
@@ -38,7 +40,7 @@ const IndexPage = (props: any) => {
 	);
 	const [nameToTest, setNameToTest] = React.useState('');
 	const [cupNumber, setCupNumber] = React.useState(
-		initialCupNumber ? initialCupNumber + 1 : -1
+		initialCupNumber ? initialCupNumber : -1
 	);
 	const [cupName, setCupName] = React.useState<string>(
 		initialCupNumber ? capitalizeEveryWord(names[initialCupNumber]) : ''
@@ -216,11 +218,13 @@ const IndexPage = (props: any) => {
 		}
 		// only turn and cupNumber probably trigger this
 	}, [turn, names, storedChoices, setCupName, cupNumber, setTurn]);
+
+	const thisDrinkType = cupNumber === -1 ? "I" : drinkType[cupNumber - 1]
 	const randomType =
 		cupNumber === -1
 			? 0
 			: Math.floor(
-					Math.random() * translations[lang][drinkType[cupNumber - 1]].length
+					Math.random() * translations[lang][thisDrinkType || "I"].length
 			  );
 	return (
 		<main>
@@ -284,38 +288,9 @@ const IndexPage = (props: any) => {
 				{description}
 			</div>
 			<div id="dimmer"></div>
-			<GatsbyImage
-				objectFit="cover"
-				style={{
-					width: '100%',
-					height: '100%',
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					zIndex: 1,
-				}}
-				loading="eager"
-				image={
-					backgrounds.edges.find(
-						(img: any) => img.node.base === `bg${bgImageNum}.jpg`
-					).node.childImageSharp.gatsbyImageData
-				}
-				alt="Background image of Starbucks shop"
-			/>
+			<BackgroundImage bgImageNum={bgImageNum} />
 			<div id="wrapper">
-				<Link to="/">
-					<GatsbyImage
-						image={
-							logos.edges.find(
-								(img: any) => img.node.base === translations[lang].logo
-							).node.childImageSharp.gatsbyImageData
-						}
-						alt="What's My Starbucks Name?"
-						imgClassName="logo"
-						className="logo"
-						loading="eager"
-					/>
-				</Link>
+				<Logo lang={lang} />
 				<div id="resultswrapper">
 					{cupNumber === -1 ? (
 						<div id="preresults">
@@ -344,20 +319,10 @@ const IndexPage = (props: any) => {
 						</div>
 					) : (
 						<div id="results">
-							<GatsbyImage
-								image={
-									cups.edges.find(
-										(img: any) => img.node.base === cupFileName(cupNumber)
-									).node.childImageSharp.gatsbyImageData
-								}
-								className="coffeepic"
-								alt={`${
-									translations[lang][drinkType[cupNumber - 1]][randomType]
-								} ${translations[lang].for} ${cupName}`}
-							/>
+							<Cup cupNumber={cupNumber} randomType={randomType} cupName={cupName} lang={lang} />
 							<div id="yourorder">
 								{`“${
-									translations[lang][drinkType[cupNumber - 1]][randomType]
+									translations[lang][  drinkType[cupNumber - 1]  || "I" ][randomType]
 								} ${translations[lang].for} `}
 								<b>{cupName}</b>.”
 							</div>
@@ -507,45 +472,6 @@ export const pageQuery = graphql`
 				description
 				title
 				siteUrl
-			}
-		}
-		logos: allFile(filter: { dir: { regex: "/logos/" } }) {
-			edges {
-				node {
-					base
-					childImageSharp {
-						fluid {
-							...GatsbyImageSharpFluid
-						}
-						gatsbyImageData(formats: AUTO)
-					}
-				}
-			}
-		}
-		backgrounds: allFile(filter: { dir: { regex: "/backgrounds/" } }) {
-			edges {
-				node {
-					base
-					childImageSharp {
-						fluid {
-							...GatsbyImageSharpFluid
-						}
-						gatsbyImageData(formats: AUTO)
-					}
-				}
-			}
-		}
-		cups: allFile(filter: { dir: { regex: "/cups$/" } }) {
-			edges {
-				node {
-					base
-					childImageSharp {
-						fluid {
-							...GatsbyImageSharpFluid
-						}
-						gatsbyImageData(formats: AUTO)
-					}
-				}
 			}
 		}
 	}
