@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { navigate, graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -200,7 +200,7 @@ const IndexPage = (props: any) => {
 		setNameToTest('');
 		setTurn(0);
 		setCupNumber(-1);
-		navigate('/');
+		window.history.pushState(null, title, "/");
 	}
 
 	React.useEffect(() => {
