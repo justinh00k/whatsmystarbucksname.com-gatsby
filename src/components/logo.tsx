@@ -1,5 +1,5 @@
 import React from "react"
-import { StaticQuery, graphql, Link } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 import {GatsbyImage} from 'gatsby-plugin-image';
 import {translations} from "./constants"
 
@@ -22,7 +22,6 @@ const Logo = (props:{lang: string})=>{
         }
       `}
       render={data => (
-        <Link to="/">
 					<GatsbyImage
 						image={data.allFile.edges.find(
 								(img: any) => img.node.base === translations[lang].logo
@@ -33,7 +32,6 @@ const Logo = (props:{lang: string})=>{
 						className="logo"
 						loading="eager"
 					/>
-				</Link>
       )}
     />
   )

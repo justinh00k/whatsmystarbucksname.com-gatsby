@@ -217,7 +217,7 @@ p {
 
 .logo {
 	left: 20px;
-	position: absolute;
+	position: absolute !important;
 	max-width: 980px;
 	width: 90%;
 	margin: 30px 0;

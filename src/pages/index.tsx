@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { navigate, graphql } from 'gatsby';
+import { navigate, graphql, Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -289,7 +289,9 @@ const IndexPage = (props: any) => {
 			<div id="dimmer"></div>
 			<BackgroundImage bgImageNum={bgImageNum} />
 			<div id="wrapper">
+			<Link to={siteUrl}>
 				<Logo lang={lang} />
+				</Link>
 				<div id="resultswrapper">
 					{cupNumber === -1 ? (
 						<div id="preresults">
