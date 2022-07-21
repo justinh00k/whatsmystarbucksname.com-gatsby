@@ -43,7 +43,7 @@ const IndexPage = (props: any) => {
 		initialCupNumber ? initialCupNumber : -1
 	);
 	const [cupName, setCupName] = React.useState<string>(
-		initialCupNumber ? capitalizeEveryWord(names[initialCupNumber]) : ''
+		initialCupNumber ? capitalizeEveryWord(names[initialCupNumber-1]) : ''
 	);
 	const [turn, setTurn] = React.useState(0);
 	const [storedChoices, setStoredChoices] = React.useState<number[]>([]);
@@ -233,7 +233,6 @@ const IndexPage = (props: any) => {
 				<meta charSet="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-				<link rel="stylesheet" href="stylesheet.css" type="text/css" />
 				<link rel="image_src" href={'../../static/logo-w.png'} />
 
 				<meta name="description" content={description} />
