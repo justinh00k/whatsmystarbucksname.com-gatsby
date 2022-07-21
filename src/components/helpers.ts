@@ -47,11 +47,9 @@ if ("FB" in window === false){
 return console.error("fb sdk failed to load");
 }
 	 window.FB.ui({
+		app_id: '852036038201352',
         method: 'feed',
-        link: `https://whatsmystarbucksname.com/cup/${encodedCupName}`,
-        name: cupName ? `My Starbucks name is "${cupName}." What's yours?` : "How will the barista misspell your name?" ,
-        caption: 'What\'s My Starbucks Name?',
-        picture: `https://whatsmystarbucksname.com/c/${cupFileName(cupNumber)}.jpg`,
-
+		display: 'popup',
+        link: `https://whatsmystarbucksname.com/cup/${encodedCupName}`
     });
 };

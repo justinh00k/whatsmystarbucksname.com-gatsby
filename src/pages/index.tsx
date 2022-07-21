@@ -5,8 +5,8 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { StaticImage } from 'gatsby-plugin-image';
 import '../styles/stylesheet.css';
 import BackgroundImage from '../components/background';
-import Logo from "../components/logo"
-import Cup from "../components/cup"
+import Logo from '../components/logo';
+import Cup from '../components/cup';
 import {
 	names,
 	popularNames,
@@ -36,14 +36,14 @@ const IndexPage = (props: any) => {
 	const { initialCupNumber } = props.pageContext;
 
 	const [bgImageNum, setBgImageNum] = React.useState(
-		1 + Math.floor(Math.random() * 13)
+		Math.floor(Math.random() * 13)
 	);
 	const [nameToTest, setNameToTest] = React.useState('');
 	const [cupNumber, setCupNumber] = React.useState(
 		initialCupNumber ? initialCupNumber : -1
 	);
 	const [cupName, setCupName] = React.useState<string>(
-		initialCupNumber ? capitalizeEveryWord(names[initialCupNumber-1]) : ''
+		initialCupNumber ? capitalizeEveryWord(names[initialCupNumber - 1]) : ''
 	);
 	const [turn, setTurn] = React.useState(0);
 	const [storedChoices, setStoredChoices] = React.useState<number[]>([]);
@@ -219,12 +219,12 @@ const IndexPage = (props: any) => {
 		// only turn and cupNumber probably trigger this
 	}, [turn, names, storedChoices, setCupName, cupNumber, setTurn]);
 
-	const thisDrinkType = cupNumber === -1 ? "I" : drinkType[cupNumber - 1]
+	const thisDrinkType = cupNumber === -1 ? 'I' : drinkType[cupNumber - 1];
 	const randomType =
 		cupNumber === -1
 			? 0
 			: Math.floor(
-					Math.random() * translations[lang][thisDrinkType || "I"].length
+					Math.random() * translations[lang][thisDrinkType || 'I'].length
 			  );
 	return (
 		<main>
@@ -232,8 +232,6 @@ const IndexPage = (props: any) => {
 				<title>{title}</title>
 				<meta charSet="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-				<link rel="image_src" href="/logo-w.png" />
 
 				<meta name="description" content={description} />
 				<meta
@@ -254,7 +252,7 @@ const IndexPage = (props: any) => {
 					property="og:title"
 					content={
 						initialCupNumber
-							? `My Starbucks name is "${cupName}" What's yours?`
+							? `My Starbucks name is "${cupName}." What's yours?`
 							: title
 					}
 				/>
@@ -270,13 +268,21 @@ const IndexPage = (props: any) => {
 					property="twitter:title"
 					content={
 						initialCupNumber
-							? `My Starbucks name is "${cupName}" What's yours?`
+							? `My Starbucks name is "${cupName}." What's yours?`
 							: title
 					}
 				/>
 				<meta
 					property="twitter:image"
 					content={
+						initialCupNumber
+							? `${siteUrl}/c/${cupFileName(cupNumber)}`
+							: `${siteUrl}/logo-w.png`
+					}
+				/>
+				<link
+					rel="image_src"
+					href={
 						initialCupNumber
 							? `${siteUrl}/c/${cupFileName(cupNumber)}`
 							: `${siteUrl}/logo-w.png`
@@ -289,8 +295,8 @@ const IndexPage = (props: any) => {
 			<div id="dimmer"></div>
 			<BackgroundImage bgImageNum={bgImageNum} />
 			<div id="wrapper">
-			<a href={siteUrl}>
-				<Logo lang={lang} />
+				<a href={siteUrl}>
+					<Logo lang={lang} />
 				</a>
 				<div id="resultswrapper">
 					{cupNumber === -1 ? (
@@ -313,16 +319,28 @@ const IndexPage = (props: any) => {
 									id="go"
 									tabIndex={2}
 									alt="Submit"
-									style={{ width: '64px', height: '64px', objectFit: "none", objectPosition: nameToTest ? "top right" : "top left"  }}
+									style={{
+										width: '64px',
+										height: '64px',
+										objectFit: 'none',
+										objectPosition: nameToTest ? 'top right' : 'top left',
+									}}
 								/>
 							</button>
 						</div>
 					) : (
 						<div id="results">
-							<Cup cupNumber={cupNumber} randomType={randomType} cupName={cupName} lang={lang} />
+							<Cup
+								cupNumber={cupNumber}
+								randomType={randomType}
+								cupName={cupName}
+								lang={lang}
+							/>
 							<div id="yourorder">
 								{`“${
-									translations[lang][  drinkType[cupNumber - 1]  || "I" ][randomType]
+									translations[lang][drinkType[cupNumber - 1] || 'I'][
+										randomType
+									]
 								} ${translations[lang].for} `}
 								<b>{cupName}</b>.”
 							</div>
@@ -338,7 +356,7 @@ const IndexPage = (props: any) => {
 										<StaticImage
 											src={'../images/newdrink.png'}
 											alt="That's not what I ordered."
-											style={{ marginRight: '30px' }}
+											style={{ marginRight: '15px' }}
 										/>
 										{translations[lang].notWhat}
 									</button>
