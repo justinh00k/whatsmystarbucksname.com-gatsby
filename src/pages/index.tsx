@@ -36,7 +36,7 @@ const IndexPage = (props: any) => {
 	const { initialCupNumber } = props.pageContext;
 
 	const [bgImageNum, setBgImageNum] = React.useState(
-		Math.floor(Math.random() * 13)
+		1+ Math.floor(Math.random() * 13)
 	);
 	const [nameToTest, setNameToTest] = React.useState('');
 	const [cupNumber, setCupNumber] = React.useState(
