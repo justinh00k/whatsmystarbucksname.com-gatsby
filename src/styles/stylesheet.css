@@ -136,12 +136,6 @@ input {
 	width: 300px;
 	outline: 0;
 }
-.enteredText {
-	object-position: top right;
-}
-.noEnteredText {
-	object-position: top left;
-}
 #go {
 	display: block;
 	float: left;
@@ -224,14 +218,15 @@ p {
 }
 @media screen and (max-width: 1015px) {
 	#resultswrapper {
-		margin-top: 20px;
+		margin-top: 0;
 	}
 	#drinksserved {
 		display: none;
 	}
 	.logo {
 		left: 0;
-		position: relative;
+		position: relative !important;
+		 margin: 0 0 30px;
 	}
 
 	.coffeepic {

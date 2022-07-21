@@ -233,7 +233,7 @@ const IndexPage = (props: any) => {
 				<meta charSet="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-				<link rel="image_src" href={'../../static/logo-w.png'} />
+				<link rel="image_src" href="/logo-w.png" />
 
 				<meta name="description" content={description} />
 				<meta
@@ -289,9 +289,9 @@ const IndexPage = (props: any) => {
 			<div id="dimmer"></div>
 			<BackgroundImage bgImageNum={bgImageNum} />
 			<div id="wrapper">
-			<Link to={siteUrl}>
+			<a href={siteUrl}>
 				<Logo lang={lang} />
-				</Link>
+				</a>
 				<div id="resultswrapper">
 					{cupNumber === -1 ? (
 						<div id="preresults">
@@ -308,13 +308,12 @@ const IndexPage = (props: any) => {
 								style={{ background: 'none', border: '0', cursor: 'pointer' }}
 								onKeyDown={(event) => event.key === 'Enter' && getName()}
 								onClick={getName}>
-								<StaticImage
-									src={'../images/cups.png'}
+								<img
+									src="/cups.png"
 									id="go"
 									tabIndex={2}
 									alt="Submit"
-									style={{ width: '64px', height: '64px' }}
-									imgClassName={nameToTest ? 'enteredText' : 'noEnteredText'}
+									style={{ width: '64px', height: '64px', objectFit: "none", objectPosition: nameToTest ? "top right" : "top left"  }}
 								/>
 							</button>
 						</div>
@@ -339,7 +338,7 @@ const IndexPage = (props: any) => {
 										<StaticImage
 											src={'../images/newdrink.png'}
 											alt="That's not what I ordered."
-											style={{ marginRight: '15px' }}
+											style={{ marginRight: '30px' }}
 										/>
 										{translations[lang].notWhat}
 									</button>
@@ -399,7 +398,6 @@ const IndexPage = (props: any) => {
 					)}
 				</div>
 				<div id="footer">
-					<div id="sharebuttons"></div>
 					<div id="drinksserved">
 						Over <span id="totaldrinks">25,000,000</span> drinks served!
 					</div>

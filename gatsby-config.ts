@@ -3,7 +3,7 @@ import type { GatsbyConfig } from 'gatsby';
 const config: GatsbyConfig = {
 	siteMetadata: {
 		title: `What's My Starbucks Name?`,
-		siteUrl: `https://www.whatsmystarbucksname.com`,
+		siteUrl: `https://whatsmystarbucksname.com`,
     description: "The world's most popular Starbucks name generator. How will a barista get your name wrong? Found out at WhatsMyStarbucksName.com."
 	},
 	graphqlTypegen: true,
