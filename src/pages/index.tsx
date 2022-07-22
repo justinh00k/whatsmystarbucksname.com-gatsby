@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { StaticImage } from 'gatsby-plugin-image';
+import '../styles/normalize.css';
 import '../styles/stylesheet.css';
 import BackgroundImage from '../components/background';
 import Logo from '../components/logo';
