@@ -49,7 +49,7 @@ const IndexPage = (props: any) => {
 	const [turn, setTurn] = React.useState(0);
 	const [storedChoices, setStoredChoices] = React.useState<number[]>([]);
 
-	function getName() {
+	const getName = ()=> {
 		const gotName = nameToTest.replace(/\W/g, '').toLowerCase();
 		if (!gotName.length) {
 			return;
@@ -196,8 +196,8 @@ const IndexPage = (props: any) => {
 		setStoredChoices(choices);
 	}
 
-	function newGame() {
-		setBgImageNum((bgNum) => (bgNum + 1 > 12 ? 0 : bgNum + 1));
+	const newGame = () => {
+		setBgImageNum((bgNum) => (bgNum + 1 > 13 ? 1 : bgNum + 1));
 		setNameToTest('');
 		setTurn(0);
 		setCupNumber(-1);

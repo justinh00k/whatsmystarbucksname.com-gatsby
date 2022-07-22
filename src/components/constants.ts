@@ -7,32 +7,34 @@ export const supportedLangs = [
 ];
 
 export const bgNames = [
+	'',
 	'aranami',
 	'shinji_w',
 	'justin brown',
 	'dick thomas johnson',
-	'tregoning',
+	'john tregoning', // 5
 	'miki yoshihito',
 	'lwyang',
-	'adpowers',
-	'jimg944',
-	'carbonnyc [in sf!]',
-	'ralph and jenny',
+	'andrew hitchcock',
+	'jim g',
+	'gavid goehring', // 10
+	'ralph daily',
 	'missbossy',
-	'garryknight',
+	'garry knight',
 ];
 
 export const bgURLs = [
+	'',
 	'https://www.flickr.com/photos/z0/7904559194/',
 	'',
 	'https://www.flickr.com/photos/justininsd/7618567732/',
 	'https://www.flickr.com/photos/31029865@N06/6399693885/',
-	'https://www.flickr.com/photos/johnniewalker/12624055345/',
+	'https://www.flickr.com/photos/johnniewalker/12624055345/', // 5
 	'https://www.flickr.com/photos/mujitra/14830012507',
-	'https://www.flickr.com/photos/lwy/2143712438/',
+	'',
 	'https://www.flickr.com/photos/adpowers/21602218/',
 	'https://www.flickr.com/photos/jimg944/258006177/',
-	'https://www.flickr.com/photos/carbonnyc/2627326773/',
+	'https://www.flickr.com/photos/carbonnyc/2627326773/', //10
 	'https://www.flickr.com/photos/ralphandjenny/4163977166/',
 	'https://www.flickr.com/photos/missbossy/2726629055',
 	'https://www.flickr.com/photos/garryknight/6240786602/',
